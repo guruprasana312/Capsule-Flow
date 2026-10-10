@@ -1,0 +1,99 @@
+/* ============================================================
+   Capsule Flow — Global CSS Variables & Design System
+   Theme: Burgundy / Night
+   ============================================================ */
+
+:root {
+  /* --- Core Brand Colors --- */
+  --cf-burgundy-900: #1a0008;
+  --cf-burgundy-800: #2d0012;
+  --cf-burgundy-700: #4a0020;
+  --cf-burgundy-600: #6b0030;
+  --cf-burgundy-500: #8b0040;
+  --cf-burgundy-400: #b00050;
+  --cf-burgundy-300: #d4006a;
+  --cf-burgundy-200: #f0338a;
+  --cf-burgundy-100: #ffb3d1;
+
+  /* --- Night / Dark Background Palette --- */
+  --cf-night-950: #080610;
+  --cf-night-900: #0d0b18;
+  --cf-night-850: #120f22;
+  --cf-night-800: #18142e;
+  --cf-night-750: #1e1938;
+  --cf-night-700: #252040;
+  --cf-night-600: #302a55;
+  --cf-night-500: #3e3870;
+  --cf-night-400: #5a548a;
+  --cf-night-300: #8480a8;
+  --cf-night-200: #b8b4d0;
+  --cf-night-100: #e8e6f5;
+
+  /* --- Accent & Highlight Colors --- */
+  --cf-accent-primary: #c0005a;
+  --cf-accent-secondary: #8b0040;
+  --cf-accent-glow: rgba(192, 0, 90, 0.4);
+  --cf-accent-subtle: rgba(192, 0, 90, 0.12);
+
+  /* --- Semantic Colors --- */
+  --cf-success: #2dbe6c;
+  --cf-warning: #f5a623;
+  --cf-error: #ff4d6d;
+  --cf-info: #4a9eff;
+
+  /* --- Surface Colors --- */
+  --cf-surface-bg: var(--cf-night-900);
+  --cf-surface-elevated: var(--cf-night-800);
+  --cf-surface-card: var(--cf-night-750);
+  --cf-surface-hover: var(--cf-night-700);
+  --cf-surface-border: rgba(192, 0, 90, 0.2);
+  --cf-surface-border-subtle: rgba(255, 255, 255, 0.06);
+
+  /* --- Text Colors --- */
+  --cf-text-primary: #f0eeff;
+  --cf-text-secondary: #b8b4d0;
+  --cf-text-muted: #6e6a8a;
+  --cf-text-accent: #f0338a;
+  --cf-text-inverse: #0d0b18;
+
+  /* --- Typography --- */
+  --cf-font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --cf-font-mono: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace;
+
+  /* --- Spacing --- */
+  --cf-space-1: 4px;
+  --cf-space-2: 8px;
+  --cf-space-3: 12px;
+  --cf-space-4: 16px;
+  --cf-space-5: 20px;
+  --cf-space-6: 24px;
+  --cf-space-8: 32px;
+  --cf-space-10: 40px;
+
+  /* --- Border Radius --- */
+  --cf-radius-sm: 6px;
+  --cf-radius-md: 10px;
+  --cf-radius-lg: 14px;
+  --cf-radius-xl: 20px;
+  --cf-radius-2xl: 28px;
+  --cf-radius-full: 9999px;
+
+  /* --- Shadows --- */
+  --cf-shadow-sm: 0 2px 8px rgba(0,0,0,0.4);
+  --cf-shadow-md: 0 4px 20px rgba(0,0,0,0.5);
+  --cf-shadow-lg: 0 8px 40px rgba(0,0,0,0.6);
+  --cf-shadow-glow: 0 0 20px rgba(192, 0, 90, 0.3);
+  --cf-shadow-glow-sm: 0 0 10px rgba(192, 0, 90, 0.2);
+
+  /* --- Transitions --- */
+  --cf-transition-fast: 120ms ease;
+  --cf-transition-normal: 220ms ease;
+  --cf-transition-slow: 380ms ease;
+
+  /* --- Z-Index Scale --- */
+  --cf-z-base: 100;
+  --cf-z-dropdown: 200;
+  --cf-z-modal: 300;
+  --cf-z-toast: 400;
+  --cf-z-fab: 500;
+}

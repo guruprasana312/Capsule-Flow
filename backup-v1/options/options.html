@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Capsule Flow — Settings</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="options.css" />
+</head>
+<body>
+  <div class="layout">
+
+    <!-- ── Sidebar ── -->
+    <aside class="sidebar">
+      <div class="sidebar__brand">
+        <div class="brand-logo">💊</div>
+        <div>
+          <div class="brand-name">Capsule <span>Flow</span></div>
+          <div class="brand-version">v1.0.0</div>
+        </div>
+      </div>
+      <nav class="sidebar__nav">
+        <a class="nav-item nav-item--active" data-section="general" href="#">⚙️ General</a>
+        <a class="nav-item" data-section="appearance" href="#">🎨 Appearance</a>
+        <a class="nav-item" data-section="platforms" href="#">🌐 Platforms</a>
+        <a class="nav-item" data-section="shortcuts" href="#">⌨️ Shortcuts</a>
+        <a class="nav-item" data-section="data" href="#">📦 Data</a>
+        <a class="nav-item" data-section="about" href="#">ℹ️ About</a>
+      </nav>
+    </aside>
+
+    <!-- ── Main Content ── -->
+    <main class="main">
+
+      <!-- ── Section: General ── -->
+      <section class="section" id="section-general">
+        <div class="section__header">
+          <h1 class="section__title">⚙️ General Settings</h1>
+          <p class="section__desc">Configure how Capsule Flow behaves on AI platforms.</p>
+        </div>
+
+        <div class="card">
+          <div class="card__title">Floating Button</div>
+          <div class="setting-row">
+            <div class="setting-info">
+              <div class="setting-label">Show floating button</div>
+              <div class="setting-desc">Display the 💊 button on all supported AI pages</div>
+            </div>
+            <label class="toggle">
+              <input type="checkbox" id="pref-show-fab" checked />
+              <span class="toggle__slider"></span>
+            </label>
+          </div>
+          <div class="setting-row">
+            <div class="setting-info">
+              <div class="setting-label">Button position</div>
+              <div class="setting-desc">Default position on the page</div>
+            </div>
+            <select class="select" id="pref-fab-position">
+              <option value="bottom-left" selected>Bottom Left</option>
+              <option value="bottom-right">Bottom Right</option>
+              <option value="top-right">Top Right</option>
+              <option value="top-left">Top Left</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card__title">Context Injection</div>
+          <div class="setting-row">
+            <div class="setting-info">
+              <div class="setting-label">Injection mode</div>
+              <div class="setting-desc">How capsule content is inserted into the AI chat input</div>
+            </div>
+            <select class="select" id="pref-inject-mode">
+              <option value="append">Append to existing text</option>
+              <option value="prepend">Prepend to existing text</option>
+              <option value="replace">Replace existing text</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card__title">Default Organization</div>
+          <div class="setting-row">
+            <div class="setting-info">
+              <div class="setting-label">Sort capsules by</div>
+            </div>
+            <select class="select" id="pref-sort-by">
+              <option value="updatedAt">Last Updated</option>
+              <option value="createdAt">Date Created</option>
+              <option value="usage">Most Used</option>
+              <option value="title">Title (A–Z)</option>
+            </select>
+          </div>
+        </div>
+
+        <button class="btn btn--primary" id="save-general-btn">Save Settings</button>
+      </section>
+
+
+
+      <!-- ── Section: Appearance ── -->
+      <section class="section hidden" id="section-appearance">
+        <div class="section__header">
+          <h1 class="section__title">🎨 Appearance</h1>
+          <p class="section__desc">Customize the look of Capsule Flow.</p>
+        </div>
+        <div class="card">
+          <div class="card__title">Theme</div>
+          <div class="theme-grid">
+            <div class="theme-card theme-card--active" data-theme="night">
+              <div class="theme-preview theme-preview--night">
+                <div class="theme-preview__bar"></div>
+                <div class="theme-preview__card"></div>
+                <div class="theme-preview__card"></div>
+              </div>
+              <div class="theme-card__name">🌙 Burgundy Night</div>
+              <div class="theme-card__check">✓</div>
+            </div>
+            <div class="theme-card" data-theme="midnight">
+              <div class="theme-preview theme-preview--midnight">
+                <div class="theme-preview__bar"></div>
+                <div class="theme-preview__card"></div>
+                <div class="theme-preview__card"></div>
+              </div>
+              <div class="theme-card__name">🌑 Deep Midnight</div>
+            </div>
+            <div class="theme-card" data-theme="rose">
+              <div class="theme-preview theme-preview--rose">
+                <div class="theme-preview__bar"></div>
+                <div class="theme-preview__card"></div>
+                <div class="theme-preview__card"></div>
+              </div>
+              <div class="theme-card__name">🌹 Rose Dark</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── Section: Platforms ── -->
+      <section class="section hidden" id="section-platforms">
+        <div class="section__header">
+          <h1 class="section__title">🌐 Supported Platforms</h1>
+          <p class="section__desc">Capsule Flow works on all these AI platforms.</p>
+        </div>
+        <div class="card">
+          <div class="platforms-grid" id="platforms-grid">
+            <!-- Filled by JS -->
+          </div>
+        </div>
+      </section>
+
+      <!-- ── Section: Shortcuts ── -->
+      <section class="section hidden" id="section-shortcuts">
+        <div class="section__header">
+          <h1 class="section__title">⌨️ Keyboard Shortcuts</h1>
+          <p class="section__desc">Keyboard shortcuts to speed up your workflow.</p>
+        </div>
+        <div class="card">
+          <div class="shortcut-list">
+            <div class="shortcut-row">
+              <div class="shortcut-info">
+                <div class="shortcut-name">Open Capsule Flow panel</div>
+                <div class="shortcut-desc">Toggle the side panel on any supported AI page</div>
+              </div>
+              <div class="shortcut-keys"><kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>K</kbd></div>
+            </div>
+            <div class="shortcut-row">
+              <div class="shortcut-info">
+                <div class="shortcut-name">Capture selection</div>
+                <div class="shortcut-desc">Save selected text as a capsule</div>
+              </div>
+              <div class="shortcut-keys"><kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>S</kbd></div>
+            </div>
+            <div class="shortcut-row">
+              <div class="shortcut-info">
+                <div class="shortcut-name">New capsule (in popup)</div>
+                <div class="shortcut-desc">Open the new capsule modal</div>
+              </div>
+              <div class="shortcut-keys"><kbd>Ctrl</kbd> + <kbd>N</kbd></div>
+            </div>
+            <div class="shortcut-row">
+              <div class="shortcut-info">
+                <div class="shortcut-name">Close / Dismiss</div>
+              </div>
+              <div class="shortcut-keys"><kbd>Esc</kbd></div>
+            </div>
+          </div>
+          <p class="note">To customize shortcuts: go to <code>chrome://extensions/shortcuts</code></p>
+        </div>
+      </section>
+
+      <!-- ── Section: Data ── -->
+      <section class="section hidden" id="section-data">
+        <div class="section__header">
+          <h1 class="section__title">📦 Data Management</h1>
+          <p class="section__desc">Export, import, and manage your capsule data.</p>
+        </div>
+        <div class="card">
+          <div class="card__title">Export</div>
+          <p class="card__desc">Download all your capsules and folders as a JSON file.</p>
+          <button class="btn btn--secondary" id="export-btn">⬇️ Export Capsules</button>
+        </div>
+        <div class="card">
+          <div class="card__title">Import</div>
+          <p class="card__desc">Import capsules from a previously exported file. Duplicates will be skipped.</p>
+          <div class="import-row">
+            <input type="file" id="import-file" accept=".json" style="display:none" />
+            <button class="btn btn--secondary" id="import-btn">⬆️ Choose File</button>
+            <span class="import-status" id="import-status"></span>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card__title">⚠️ Delete All Data</div>
+          <p class="card__desc">Permanently delete all capsules and folders from local storage.</p>
+          <button class="btn btn--danger btn--sm" id="clear-data-btn">🗑️ Delete All Local Data</button>
+        </div>
+      </section>
+
+      <!-- ── Section: About ── -->
+      <section class="section hidden" id="section-about">
+        <div class="section__header">
+          <h1 class="section__title">ℹ️ About Capsule Flow</h1>
+        </div>
+        <div class="card about-card">
+          <div class="about-logo">💊</div>
+          <div class="about-name">Capsule Flow</div>
+          <div class="about-version">Version 1.0.0</div>
+          <div class="about-tagline">The context-transfer layer for modern AI workflows.</div>
+          <div class="about-desc">
+            Capture AI conversations as capsules and reuse context instantly across
+            ChatGPT, Claude, Gemini, DeepSeek, Perplexity, Grok, and more.
+            <br><br>
+            <strong>Capture once. Reuse everywhere. ✨</strong>
+          </div>
+          <div class="about-platforms">
+            <span>🤖 ChatGPT</span>
+            <span>⚡ Claude</span>
+            <span>✨ Gemini</span>
+            <span>🔍 DeepSeek</span>
+            <span>🔮 Perplexity</span>
+            <span>💡 Grok</span>
+            <span>🪟 Copilot</span>
+            <span>🦋 Poe</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── Toast ── -->
+      <div class="options-toast" id="options-toast" style="display:none"></div>
+
+    </main>
+  </div>
+  <script src="options.js" type="module"></script>
+</body>
+</html>

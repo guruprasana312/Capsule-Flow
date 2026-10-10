@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Capsule Flow</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+  <div class="popup-root" id="app">
+
+    <!-- ── Header ── -->
+    <header class="header">
+      <div class="header__brand">
+        <div class="header__logo">💊</div>
+        <div>
+          <div class="header__title">Capsule <span>Flow</span></div>
+          <div class="header__subtitle" id="platform-badge">Context transfer layer</div>
+        </div>
+      </div>
+      <div class="header__actions">
+        <button class="icon-btn" id="settings-btn" title="Settings">⚙️</button>
+      </div>
+    </header>
+
+    <!-- ── Search & Controls ── -->
+    <div class="search-row">
+      <div class="search-box">
+        <span class="search-box__icon">🔍</span>
+        <input class="search-box__input" id="search" type="text" placeholder="Search capsules…" autocomplete="off" />
+        <button class="search-box__clear" id="search-clear" style="display:none">✕</button>
+      </div>
+      <select class="sort-select" id="sort-select" title="Sort by">
+        <option value="updatedAt">Latest</option>
+        <option value="createdAt">Oldest</option>
+        <option value="usage">Most Used</option>
+        <option value="title">A–Z</option>
+      </select>
+    </div>
+
+    <!-- ── Tabs ── -->
+    <div class="tabs" id="tabs">
+      <button class="tab tab--active" data-tab="all">All</button>
+      <button class="tab" data-tab="folders">Folders</button>
+      <button class="tab" data-tab="recent">Recent</button>
+      <button class="tab" data-tab="starred">⭐ Starred</button>
+    </div>
+
+    <!-- ── Folder Sidebar (shown in folders tab) ── -->
+    <div class="folder-bar" id="folder-bar" style="display:none">
+      <div class="folder-list" id="folder-list"></div>
+      <button class="folder-add-btn" id="folder-add-btn">+ New Folder</button>
+    </div>
+
+    <!-- ── Capsule List ── -->
+    <div class="capsule-list" id="capsule-list">
+      <div class="loading" id="loading">
+        <div class="spinner"></div>
+        <span>Loading…</span>
+      </div>
+    </div>
+
+    <!-- ── Empty State ── -->
+    <div class="empty-state" id="empty-state" style="display:none">
+      <div class="empty-state__icon">💊</div>
+      <div class="empty-state__title">No capsules yet</div>
+      <div class="empty-state__subtitle">Visit an AI platform and capture context to get started</div>
+    </div>
+
+    <!-- ── Footer ── -->
+    <div class="popup-footer">
+      <button class="btn btn--secondary btn--sm" id="capture-btn">📸 Capture</button>
+      <button class="btn btn--primary btn--sm" id="new-btn">+ New Capsule</button>
+      <button class="btn btn--ghost btn--sm" id="export-btn" title="Import / Export">⬇️</button>
+    </div>
+
+    <!-- ── Create/Edit Modal ── -->
+    <div class="modal-overlay" id="modal-overlay" style="display:none">
+      <div class="modal" id="modal">
+        <div class="modal__header">
+          <div class="modal__icon">💊</div>
+          <div class="modal__title" id="modal-title">New Capsule</div>
+          <button class="modal__close" id="modal-close">✕</button>
+        </div>
+
+        <div class="form-group">
+          <label class="label" for="cap-title">Title</label>
+          <input class="input" id="cap-title" type="text" placeholder="Name your capsule…" maxlength="100" />
+        </div>
+
+        <div class="form-group">
+          <label class="label" for="cap-content">Content</label>
+          <textarea class="textarea" id="cap-content" placeholder="Your context, goals, project details…" rows="6"></textarea>
+          <div class="char-count" id="char-count">0 / 50,000</div>
+        </div>
+
+        <div class="form-group">
+          <label class="label">Tags</label>
+          <div class="tags-input" id="tags-input-wrapper">
+            <input id="tags-input" type="text" placeholder="Add tag + Enter…" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="label" for="cap-folder">Folder</label>
+          <select class="input" id="cap-folder" style="cursor:pointer">
+            <option value="">— No Folder —</option>
+          </select>
+        </div>
+
+        <div class="form-group checkbox-group">
+          <input type="checkbox" id="cap-starred" class="checkbox" />
+          <label for="cap-starred" class="checkbox-label">⭐ Star this capsule</label>
+        </div>
+
+        <div class="modal__actions">
+          <button class="btn btn--secondary" id="modal-cancel">Cancel</button>
+          <button class="btn btn--primary" id="modal-save">💊 Save</button>
+        </div>
+      </div>
+    </div>
+
+
+
+    <!-- ── Detail View ── -->
+    <div class="modal-overlay" id="detail-overlay" style="display:none">
+      <div class="modal modal--wide" id="detail-modal">
+        <div class="modal__header">
+          <div class="modal__icon">💊</div>
+          <div class="modal__title" id="detail-title">Capsule Details</div>
+          <button class="modal__close" id="detail-close">✕</button>
+        </div>
+        <div class="detail-content" id="detail-content"></div>
+        <div class="detail-meta" id="detail-meta"></div>
+        <div class="modal__actions">
+          <button class="btn btn--secondary" id="detail-edit-btn">✏️ Edit</button>
+          <button class="btn btn--primary" id="detail-copy-btn">📋 Copy Content</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <script src="popup.js" type="module"></script>
+</body>
+</html>

@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="aurora">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Capsule Flow — Dashboard</title>
+  <link rel="stylesheet" href="../shared/theme.css" />
+  <link rel="stylesheet" href="options.css" />
+</head>
+<body>
+  <div class="layout">
+    <aside class="side">
+      <div class="brand-row">
+        <div class="logo" data-icon="capsule"></div>
+        <div>
+          <div class="brand">Capsule <b>Flow</b></div>
+          <div class="ver" id="version"></div>
+        </div>
+      </div>
+      <nav class="nav" id="nav">
+        <a href="#capsules" data-view="capsules"><span data-icon="grid"></span>Capsules <em id="nav-count">0</em></a>
+        <a href="#folders" data-view="folders"><span data-icon="folder"></span>Folders</a>
+        <a href="#settings" data-view="settings"><span data-icon="settings"></span>Settings</a>
+        <a href="#data" data-view="data"><span data-icon="download"></span>Import &amp; export</a>
+        <a href="#help" data-view="help"><span data-icon="capture"></span>How it works</a>
+      </nav>
+      <div class="side-foot">
+        <div class="privacy"><span class="dot ok"></span>Stored on this device only</div>
+        <div class="usage" id="usage"></div>
+      </div>
+    </aside>
+
+    <main class="main">
+      <!-- ─── Capsules ─── -->
+      <section class="view" id="view-capsules">
+        <div class="welcome" id="welcome" hidden>
+          <div>
+            <h2>Capture once, reuse everywhere</h2>
+            <p>Capsule Flow turns AI conversations into portable context you can drop into any other assistant.</p>
+          </div>
+          <ol>
+            <li><b>Open a chat</b> on ChatGPT, Claude, Gemini, DeepSeek, Perplexity, Grok, Copilot, Poe or Le Chat.</li>
+            <li><b>Capture it.</b> Click the <i>Capsules</i> button bottom-right, then <i>Capture chat</i> (or press Alt+Shift+C).</li>
+            <li><b>Inject it</b> into another tool's chat box with one click, or drag the card straight onto the input.</li>
+          </ol>
+          <button class="icon-btn" id="welcome-close" title="Dismiss" data-icon="close"></button>
+        </div>
+
+        <div class="split">
+          <div class="pane list-pane">
+            <div class="pane-head">
+              <div class="search"><span data-icon="search"></span><input id="q" type="search" placeholder="Search title, content, tags…" autocomplete="off"></div>
+              <button class="btn primary" id="new-btn"><span data-icon="plus"></span>New</button>
+            </div>
+            <div class="filters">
+              <div class="chips" id="chips">
+                <button class="chip on" data-view="all">All</button>
+                <button class="chip" data-view="starred">Starred</button>
+                <button class="chip" data-view="recent">Recent</button>
+              </div>
+              <select id="f-folder" aria-label="Folder"></select>
+              <select id="f-platform" aria-label="Source"></select>
+              <select id="f-sort" aria-label="Sort">
+                <option value="updatedAt">Last edited</option>
+                <option value="createdAt">Newest</option>
+                <option value="usage">Most used</option>
+                <option value="title">A–Z</option>
+              </select>
+            </div>
+            <div class="clist" id="clist"></div>
+          </div>
+
+          <div class="pane detail-pane" id="detail"></div>
+        </div>
+      </section>
+
+      <!-- ─── Folders ─── -->
+      <section class="view" id="view-folders" hidden>
+        <header class="vhead"><h1>Folders</h1><p>Group capsules by project, client or topic.</p></header>
+        <div class="card">
+          <form class="inline-form" id="folder-form">
+            <input id="folder-name" maxlength="40" placeholder="New folder name, e.g. Website relaunch" required>
+            <button class="btn primary" type="submit"><span data-icon="plus"></span>Add folder</button>
+          </form>
+          <div class="folder-list" id="folder-list"></div>
+        </div>
+      </section>
+
+      <!-- ─── Settings ─── -->
+      <section class="view" id="view-settings" hidden>
+        <header class="vhead"><h1>Settings</h1><p>Changes save automatically and apply to open tabs right away.</p></header>
+
+        <div class="card">
+          <h3>Theme</h3>
+          <div class="themes" id="themes">
+            <button class="theme" data-theme-pick="aurora"><span class="sw" style="background:linear-gradient(135deg,#0a1315 50%,#2dd4bf 50%)"></span>Aurora<small>Dark · teal</small></button>
+            <button class="theme" data-theme-pick="daylight"><span class="sw" style="background:linear-gradient(135deg,#f3f7f6 50%,#0d9488 50%)"></span>Daylight<small>Light · teal</small></button>
+            <button class="theme" data-theme-pick="ember"><span class="sw" style="background:linear-gradient(135deg,#130a0e 50%,#f0507f 50%)"></span>Ember<small>Dark · burgundy</small></button>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>On AI sites</h3>
+          <label class="setting"><div><b>Show the floating Capsules button</b><span>You can always open the panel with Ctrl+Shift+K.</span></div><input type="checkbox" class="switch" data-pref="showFab"></label>
+          <label class="setting"><div><b>Button position</b></div>
+            <select data-pref="fabPosition"><option value="bottom-right">Bottom right</option><option value="bottom-left">Bottom left</option></select></label>
+        </div>
+
+        <div class="card">
+          <h3>Capturing</h3>
+          <label class="setting"><div><b>Capsule format</b><span>Both start with an auto-generated brief: goal, constraints, key points.</span></div>
+            <select data-pref="captureFormat"><option value="brief">Brief + recent messages</option><option value="full">Brief + full transcript</option></select></label>
+          <label class="setting"><div><b>Recent messages to keep</b><span>Used by the "Brief + recent" format.</span></div>
+            <input type="number" min="2" max="40" step="1" data-pref="recentTurns" class="num"></label>
+          <label class="setting"><div><b>Maximum capsule length</b><span>Characters. Older messages are trimmed first.</span></div>
+            <input type="number" min="2000" max="200000" step="1000" data-pref="maxChars" class="num"></label>
+        </div>
+
+        <div class="card">
+          <h3>Injecting</h3>
+          <label class="setting"><div><b>When the chat box already has text</b></div>
+            <select data-pref="injectMode"><option value="append">Add after it</option><option value="prepend">Add before it</option><option value="replace">Replace it</option></select></label>
+          <label class="setting"><div><b>Paste as a ready-to-use prompt</b><span>Wraps the capsule in clear instructions so the other AI knows it's earlier context, follows your constraints and picks up where you stopped. Turn off to paste the raw text only.</span></div><input type="checkbox" class="switch" data-pref="includeHeader"></label>
+          <label class="setting"><div><b>After reading the capsule, the AI should</b><span>The closing instruction at the end of the prompt.</span></div>
+            <select data-pref="promptGoal"><option value="greet">Reply only: "Hey! 👋 I got you! Have any doubts? Just ask me…"</option><option value="continue">Confirm the goal, then continue where I left off</option><option value="none">No instruction, context only</option></select></label>
+          <label class="setting"><div><b>Default sort</b></div>
+            <select data-pref="sortBy"><option value="updatedAt">Last edited</option><option value="createdAt">Newest</option><option value="usage">Most used</option><option value="title">A–Z</option></select></label>
+        </div>
+      </section>
+
+      <!-- ─── Data ─── -->
+      <section class="view" id="view-data" hidden>
+        <header class="vhead"><h1>Import &amp; export</h1><p>Back up your capsules or move them to another browser.</p></header>
+        <div class="card">
+          <h3>Export</h3>
+          <p class="muted">Downloads every capsule and folder as one JSON file.</p>
+          <div class="btn-row">
+            <button class="btn primary" id="export-json"><span data-icon="download"></span>Export JSON</button>
+            <button class="btn" id="export-md"><span data-icon="download"></span>Export as Markdown</button>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Import</h3>
+          <p class="muted">Pick a Capsule Flow export (JSON). Capsules you already have are skipped, so importing twice is safe.</p>
+          <div class="btn-row">
+            <input type="file" id="import-file" accept=".json,application/json" hidden>
+            <button class="btn" id="import-btn"><span data-icon="upload"></span>Choose file…</button>
+            <span class="muted" id="import-status"></span>
+          </div>
+        </div>
+        <div class="card danger-card">
+          <h3>Delete everything</h3>
+          <p class="muted">Removes all capsules and folders from this browser. Settings are kept. Export first if you might want them back.</p>
+          <div class="btn-row">
+            <input id="wipe-confirm" placeholder='Type "delete" to confirm' class="text">
+            <button class="btn danger" id="wipe-btn" disabled><span data-icon="trash"></span>Delete all capsules</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ─── Help ─── -->
+      <section class="view" id="view-help" hidden>
+        <header class="vhead"><h1>How it works</h1><p>Capsule Flow is a context-transfer layer between AI tools.</p></header>
+        <div class="card">
+          <h3>Supported sites</h3>
+          <div class="plat-grid" id="plat-grid"></div>
+          <p class="muted small">On any other website you can still highlight text, right-click and choose <b>Save selection as capsule</b>.</p>
+        </div>
+        <div class="card">
+          <h3>Keyboard shortcuts</h3>
+          <div class="kbd-row"><span>Open / close the panel on an AI site</span><span><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>K</kbd></span></div>
+          <div class="kbd-row"><span>Capture the current conversation</span><span><kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>C</kbd></span></div>
+          <div class="kbd-row"><span>Close panel or dialog</span><span><kbd>Esc</kbd></span></div>
+          <p class="muted small">Change these at <a href="#" id="open-shortcuts">chrome://extensions/shortcuts</a>.</p>
+        </div>
+        <div class="card">
+          <h3>What's in a capsule</h3>
+          <p class="muted">When you capture a chat, Capsule Flow reads the messages on the page and writes a brief locally (no AI calls, nothing leaves your browser):</p>
+          <ul class="muted">
+            <li><b>Goal</b> — your first request in the conversation.</li>
+            <li><b>Constraints &amp; preferences</b> — sentences where you said must, should, avoid, only, don't…</li>
+            <li><b>Key points</b> — bullet points and headings from the latest answers.</li>
+            <li><b>Where we left off</b> — your most recent message.</li>
+            <li>The recent messages (or the full transcript), trimmed to your length limit.</li>
+          </ul>
+          <p class="muted">Everything is editable before and after saving, and earlier versions are kept so you can roll back.</p>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div class="modal-wrap" id="modal" hidden><div class="modal" id="modal-body"></div></div>
+  <div class="toast" id="toast" role="status"></div>
+
+  <script src="../shared/platforms.js"></script>
+  <script src="../shared/store.js"></script>
+  <script src="../shared/format.js"></script>
+  <script src="../shared/icons.js"></script>
+  <script src="options.js"></script>
+</body>
+</html>

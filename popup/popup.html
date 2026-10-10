@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="aurora">
+<head>
+  <meta charset="UTF-8" />
+  <title>Capsule Flow</title>
+  <link rel="stylesheet" href="../shared/theme.css" />
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+  <header class="head">
+    <div class="logo" id="logo"></div>
+    <div class="brand-wrap">
+      <div class="brand">Capsule <b>Flow</b></div>
+      <div class="status" id="status"><span class="dot"></span><span id="status-text">Checking this tab…</span></div>
+    </div>
+    <button class="icon-btn" id="btn-dashboard" title="Open dashboard"></button>
+    <button class="icon-btn" id="btn-settings" title="Settings"></button>
+  </header>
+
+  <section class="actions">
+    <button class="btn primary" id="btn-capture" disabled></button>
+    <button class="btn" id="btn-panel" disabled></button>
+    <button class="btn" id="btn-new"></button>
+  </section>
+
+  <div class="search">
+    <span id="search-icon"></span>
+    <input id="search" type="search" placeholder="Search capsules…" aria-label="Search capsules" autocomplete="off" />
+  </div>
+
+  <nav class="chips" id="chips">
+    <button class="chip on" data-view="all">All</button>
+    <button class="chip" data-view="starred">Starred</button>
+    <button class="chip" data-view="recent">Recent</button>
+    <select id="folder" aria-label="Folder"><option value="">All folders</option></select>
+  </nav>
+
+  <main class="list" id="list" role="list"></main>
+
+  <footer class="foot">
+    <span id="count">0 capsules</span>
+    <span class="kbd-hint">Ctrl+Shift+K on any AI chat</span>
+  </footer>
+
+  <div class="toast" id="toast" role="status"></div>
+
+  <script src="../shared/platforms.js"></script>
+  <script src="../shared/store.js"></script>
+  <script src="../shared/format.js"></script>
+  <script src="../shared/icons.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>

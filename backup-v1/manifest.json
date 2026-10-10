@@ -1,0 +1,97 @@
+{
+  "manifest_version": 3,
+  "name": "Capsule Flow",
+  "version": "1.0.0",
+  "description": "Capture AI conversations as capsules and reuse context instantly across ChatGPT, Claude, Gemini, Perplexity, Grok, DeepSeek and more.",
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    },
+    "default_title": "Capsule Flow"
+  },
+  "background": {
+    "service_worker": "background/background.js",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://chatgpt.com/*",
+        "https://chat.openai.com/*",
+        "https://claude.ai/*",
+        "https://gemini.google.com/*",
+        "https://deepseek.com/*",
+        "https://chat.deepseek.com/*",
+        "https://www.perplexity.ai/*",
+        "https://grok.x.ai/*",
+        "https://x.com/i/grok*",
+        "https://grok.com/*",
+        "https://copilot.microsoft.com/*",
+        "https://www.bing.com/chat*",
+        "https://poe.com/*",
+        "https://character.ai/*"
+      ],
+      "js": ["content/content.js"],
+      "css": ["content/content.css"],
+      "run_at": "document_idle"
+    }
+  ],
+  "permissions": [
+    "storage",
+    "activeTab",
+    "scripting",
+    "contextMenus",
+    "notifications",
+    "clipboardWrite",
+    "clipboardRead"
+  ],
+  "host_permissions": [
+    "https://chatgpt.com/*",
+    "https://chat.openai.com/*",
+    "https://claude.ai/*",
+    "https://gemini.google.com/*",
+    "https://deepseek.com/*",
+    "https://chat.deepseek.com/*",
+    "https://www.perplexity.ai/*",
+    "https://grok.x.ai/*",
+    "https://x.com/i/grok*",
+    "https://grok.com/*",
+    "https://copilot.microsoft.com/*",
+    "https://www.bing.com/chat*",
+    "https://poe.com/*",
+    "https://character.ai/*"
+  ],
+  "commands": {
+    "open-capsule-flow": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+K",
+        "mac": "Command+Shift+K"
+      },
+      "description": "Open Capsule Flow panel"
+    },
+    "capture-selection": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+S",
+        "mac": "Command+Shift+S"
+      },
+      "description": "Capture selected text as capsule"
+    }
+  },
+  "options_page": "options/options.html",
+  "web_accessible_resources": [
+    {
+      "resources": ["icons/*", "content/*"],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}

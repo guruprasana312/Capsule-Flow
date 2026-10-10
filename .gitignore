@@ -1,0 +1,17 @@
+# Operating System files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Dependencies & logs
+node_modules/
+*.log
+
+# Editor & IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Tool caches
+.qodo/
